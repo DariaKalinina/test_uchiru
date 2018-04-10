@@ -1,0 +1,13 @@
+extends templates/template.pug
+include templates/header.pug
+
+block content
+  //внешний контайнер
+  .wrapper
+    //внутренний контайнер для адаптива
+    .container
+      +header
+            
+block scripts
+  script(src='js/script.min.js')
+        
