@@ -1,5 +1,9 @@
 //переменные: цвета
 $white: #fff;
+$grey: #eee;
+$black: #000;
+$light-grey: #afafaf;
+$pink: #e34693;
 
 //mixin
 @import 'mixins/mixin.scss';
@@ -7,3 +11,4 @@ $white: #fff;
 //block
 @import 'block/adjustment.scss';
 @import 'block/calc.scss';
+@import 'block/form.scss';

@@ -1,3 +1,45 @@
-h1{
-  color: red;
+.calc{
+  width: 960px;
+  height: 563px;
+  padding-top: 70px;
+  background-color: $white;
+  border: 2px solid $grey;
+}
+
+.calc__top{
+  width: 100%;
+  height: 200px;
+}
+
+.calc__down{
+  position: relative;
+  width: 100%;
+  height: 260px;
+}
+
+.calc__stroke{
+  position: absolute;
+  left: 77px;
+  bottom: 155px;
+  z-index: 2;
+}
+
+.calc__stroke-block{
+  display: inline-block;
+}
+
+.calc__stroke-img{
+  display: inline-block;
+  &--first{
+    background-size: contain;
+  }
+  &--second{
+    background-size: contain;
+  }
+}
+
+.calc__scale{
+  position: absolute;
+  bottom: 90px;
+  left: 43px;
 }

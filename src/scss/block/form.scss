@@ -1,0 +1,41 @@
+.sum{
+  display: flex;
+  justify-content: center;
+}
+
+.sum__number{
+  width: 30px;
+  font-size: 40px;
+  color: $black;
+  &--total{
+    width: 67px;
+    height: 50px;
+  }
+  &--number{
+    display: block;
+    width: 34px;
+    height: 45px;
+  }
+}
+
+.sum__input{
+  // display: none;
+  background-color: $white;
+  border: 3px solid $light-grey;
+  border-radius: 5px;
+    &:focus{
+      outline: none!important;
+    }
+}
+
+input::-moz-placeholder{
+  color: $black;
+}
+
+input::-ms-input-placeholder{
+  color: $black;
+}
+
+input::-webkit-input-placeholder{
+   color: $black;
+}

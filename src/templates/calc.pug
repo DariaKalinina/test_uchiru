@@ -1,6 +1,27 @@
 //-шаблон для блока
+
 mixin calc
   main.calc 
-    h1 Привет!
+    .calc__top
+      form.sum(method='post' id='form-id')
+        .sum__number.sum__number--first 7
+        .sum__number.sum__number--plus +
+        .sum__number.sum__number--second 4
+        .sum__number.sum__number--equal =
+        .sum__number.sum__number--question ?
+        input(class='sum__number sum__number--total sum__input' type='text') 
+        
+    .calc__down
+      .calc__stroke
+        .calc__stroke-block
+          form.sum(method='post' id='form-id')
+            input(class='sum__number sum__number--number sum__input' type='text') 
+          .calc__stroke-img.calc__stroke-img--first
+        .calc__stroke-block
+          form.sum(method='post' id='form-id')
+            input(class='sum__number sum__number--number sum__input' type='text') 
+          .calc__stroke-img.calc__stroke-img--second
+      .calc__scale
+        img.calc__scale-img(src="../img/sprite.png" alt="scale")
     
               
