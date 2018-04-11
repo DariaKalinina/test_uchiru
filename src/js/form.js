@@ -7,31 +7,34 @@ let totalSum = null;
 
 let sumNumberFirst = document.querySelector('.sum__number--first');
 let sumNumberSecond = document.querySelector('.sum__number--second');
-console.log(sumNumberFirst);
-console.log(sumNumberSecond);
+console.log(sumNumberFirst.textContent);
+console.log(sumNumberSecond.textContent);
 
 let strokeFirst = document.querySelector('.calc__stroke-img--first');
 let strokeSecond = document.querySelector('.calc__stroke-img--second');
 
 firstNumber = randomInteger(6, 9);
-//вычисление ширины и высоты блока, числа взяты из пропорции у шкале из макета
-strokeFirst.style.background = "url(../img/stroke-"+firstNumber+".svg) center center no-repeat";
-strokeFirst.style.width = (firstNumber*39)+"px";
-strokeFirst.style.height = (firstNumber*10)+"px";
-
 secondNumber = chooseSecondNumber();
-//вычисление ширины и высоты блока, числа взяты из пропорции у шкале из макета
-strokeSecond.style.background = "url(../img/stroke-"+secondNumber+".svg) center center no-repeat";
-strokeSecond.style.width = (secondNumber*39)+"px";
-strokeSecond.style.height = (secondNumber*10)+"px";
+sumNumberFirst.textContent = firstNumber;
+sumNumberSecond.textContent = secondNumber;
+drawStroke(firstNumber, strokeFirst);
+
+drawStroke(secondNumber, strokeSecond);
+
 
 totalSum = firstNumber + secondNumber;
 console.log('firstNumber = ', firstNumber);
 console.log('secondNumber = ', secondNumber);
 console.log('totalSum = ', totalSum);
 
-function drawStroke(number) {
+//отрисовка стрелок
+function drawStroke(number, elem) {
+  //вычисление ширины и высоты блока, числа взяты из пропорции у шкале из макета
+  elem.style.background = "url(../img/stroke-"+number+".svg) center center no-repeat";
+  elem.style.width = (number*39)+"px";
+  elem.style.height = (number*10)+"px";
 
+  return true;
 }
 
 //выбор второго числв
