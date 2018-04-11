@@ -18,13 +18,21 @@
   }
 }
 
-.sum__input{
-  // display: none;
+.input__number{
   background-color: $white;
   border: 3px solid $light-grey;
   border-radius: 5px;
     &:focus{
       outline: none!important;
+    }
+    &--sum{
+      display: none;
+    }
+    &--firstNum{
+      display: none;
+    }
+    &--SecondNum{
+      display: none;
     }
 }
 
@@ -38,4 +46,13 @@ input::-ms-input-placeholder{
 
 input::-webkit-input-placeholder{
    color: $black;
+}
+
+//стили для ошибок
+.error-value{
+  color: red;
+}
+
+.error-background{
+  background-color: yellow;
 }

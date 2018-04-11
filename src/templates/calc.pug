@@ -9,17 +9,17 @@ mixin calc
         .sum__number.sum__number--second 
         .sum__number.sum__number--equal =
         .sum__number.sum__number--question ?
-        input(class='sum__number sum__number--total sum__input' type='text') 
+        input(class='sum__number sum__number--total input__number input__number--sum' type='text') 
         
     .calc__down
       .calc__stroke
         .calc__stroke-block
           form.sum(method='post' id='form-id')
-            input(class='sum__number sum__number--number sum__input' type='text') 
+            input(class='sum__number sum__number--number input__number input__number--firstNum' type='text') 
           .calc__stroke-img.calc__stroke-img--first
         .calc__stroke-block
           form.sum(method='post' id='form-id')
-            input(class='sum__number sum__number--number sum__input' type='text') 
+            input(class='sum__number sum__number--number input__number input__number--SecondNum' type='text') 
           .calc__stroke-img.calc__stroke-img--second
       .calc__scale
         img.calc__scale-img(src="../img/sprite.png" alt="scale")
