@@ -36,7 +36,6 @@ $(document).on('change','.input__number--firstNum',function(){
     return true;
     }
   inputFirst.addClass('error-value');
-  // inputFirst.addClass('input__number--border');
   sumNumberFirst.addClass('error-background');
   return false;
 });
@@ -53,7 +52,6 @@ $(document).on('change','.input__number--secondNum',function(){
     return true;
     }
   inputSecond.addClass('error-value');
-  // inputSecond.addClass('input__number--border');
   sumNumberSecond.addClass('error-background');
   return false;
 });
@@ -76,6 +74,7 @@ function drawStroke(number, elem) {
   let weightValue = number * 39;
   let heightValue = number * 10;
   let urlValue = 'url(../img/stroke-' + number + '.svg) center center no-repeat';
+
   //вычисление ширины и высоты блока, числа взяты из пропорции у шкале из макета
   elem.css({ background: urlValue });
   elem.css({ width: weightValue + 'px' });
