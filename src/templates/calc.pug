@@ -3,25 +3,23 @@
 mixin calc
   main.calc 
     .calc__top
-      form.sum(method='post' id='form-id')
+      form.sum
         .sum__number.sum__number--first 
-        .sum__number.sum__number--plus +
+        .sum__number +
         .sum__number.sum__number--second 
-        .sum__number.sum__number--equal =
+        .sum__number =
         .sum__number.sum__number--question ?
-        input(class='sum__number sum__number--total input__number input__number--sum input__number--border' type='text' maxlength='2') 
+        input#inputSum(class='sum__number sum__number--total sum__input hidden active' type='text' maxlength='2') 
         
     .calc__down
       .calc__stroke
         .calc__stroke-block
-          form.sum(method='post' id='form-id')
-            input(class='sum__number sum__number--number input__number input__number--firstNum input__number--border' type='text' maxlength='1') 
+          form.sum
+            input#inputFirst(class='sum__number sum__input hidden active' type='text' maxlength='1') 
           .calc__stroke-img.calc__stroke-img--first
         .calc__stroke-block
-          form.sum(method='post' id='form-id')
-            input(class='sum__number sum__number--number input__number input__number--secondNum input__number--border' type='text' maxlength='1') 
+          form.sum
+            input#inputSecond(class='sum__number sum__input hidden active' type='text' maxlength='1') 
           .calc__stroke-img.calc__stroke-img--second
       .calc__scale
         img.calc__scale-img(src="../img/sprite.png" alt="scale")
-    
-              

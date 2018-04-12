@@ -4,44 +4,23 @@
 }
 
 .sum__number{
-  width: 30px;
+  width: 34px;
+  height: 45px;
   font-size: 40px;
   color: $black;
   text-align: center;
-  &--total{
-    width: 67px;
-    height: 50px;
-  }
-  &--number{
-    display: block;
-    width: 34px;
-    height: 45px;
-  }
+  &--total,
   &--question{
     width: 67px;
-    height: 50px;
-    display: block;
   }
 }
 
-.input__number{
+.sum__input{
   background-color: $white;
   border: none;
+  border-radius: 5px;
     &:focus{
       outline: none!important;
-    }
-    &--border{
-      border: 3px solid $light-grey;
-      border-radius: 5px;
-    }
-    &--sum{
-      display: none;
-    }
-    &--firstNum{
-      display: none;
-    }
-    &--secondNum{
-      display: none;
     }
 }
 
@@ -59,9 +38,19 @@ input::-webkit-input-placeholder{
 
 //стили для ошибок
 .error-value{
-  color: red;  
+  color: $error;
 }
 
 .error-background{
-  background-color: yellow;
+  border-radius: 5px;
+  background-color: $orange;
+}
+
+//стили для измениения состояний input
+.active{
+  border: 3px solid $light-grey;
+}
+
+.hidden{
+  display: none;
 }

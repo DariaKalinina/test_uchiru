@@ -8,9 +8,9 @@ let question = $('.sum__number--question');
 let strokeFirst = $('.calc__stroke-img--first');
 let strokeSecond = $('.calc__stroke-img--second');
 
-let inputFirst = $('.input__number--firstNum');
-let inputSecond = $('.input__number--secondNum');
-let inputSum = $('.input__number--sum');
+const inputFirst = $('#inputFirst');
+const inputSecond = $('#inputSecond');
+const inputSum = $('#inputSum');
 
 let numberFirst = randomInteger(6, 9);
 let numberSecond = chooseSecondNumber();
@@ -20,35 +20,35 @@ let totalSum = numberFirst + numberSecond;
 sumNumberFirst.text(numberFirst);
 sumNumberSecond.text(numberSecond);
 
+//нарисовать первую стелку
 drawStroke(numberFirst, strokeFirst);
-inputFirst.css('display', 'block');
+inputFirst.removeClass('hidden');
 
-//проверка длину содержимого в input и его правильность
-$(document).on('change','.input__number--firstNum',function(){
+//проверить ввод первого значения и нарисовать вторую стрелку
+$(inputFirst).on('change', function() {
   let isTrue = validateTrue(inputFirst, numberFirst);
-  if(isTrue) {
-    inputFirst.removeClass('error-value');
+  if (isTrue) {
+    inputFirst.removeClass('error-value active')
+      .prop('readonly', true);
     sumNumberFirst.removeClass('error-background');
-    inputFirst.removeClass('input__number--border');
-    inputFirst.prop('readonly', true);
     drawStroke(numberSecond, strokeSecond);
-    inputSecond.css('display', 'block');
+    inputSecond.removeClass('hidden');
     return true;
-    }
+  }
   inputFirst.addClass('error-value');
   sumNumberFirst.addClass('error-background');
   return false;
 });
 
-$(document).on('change','.input__number--secondNum',function(){
+//проверить ввод второго значения и поменять отображение знака вопроса на блок с вводом суммы
+$(inputSecond).on('change', function(){
   let isTrue = validateTrue(inputSecond, numberSecond);
   if(isTrue) {
-    inputSecond.removeClass('error-value');
+    inputSecond.removeClass('error-value active')
+      .prop('readonly', true);
     sumNumberSecond.removeClass('error-background');
-    inputSecond.removeClass('input__number--border');
-    inputSecond.prop('readonly', true);
-    question.css('display', 'none');
-    inputSum.css('display', 'block');
+    question.addClass('hidden');
+    inputSum.removeClass('hidden');
     return true;
     }
   inputSecond.addClass('error-value');
@@ -56,12 +56,12 @@ $(document).on('change','.input__number--secondNum',function(){
   return false;
 });
 
-$(document).on('change','.input__number--sum',function(){
+//проверить ввод суммы
+$(inputSum).on('change', function(){
   let isTrue = validateTrue(inputSum, totalSum);
   if(isTrue) {
-    inputSum.removeClass('error-value');
-    inputSum.removeClass('input__number--border');
-    inputSum.prop('readonly', true);
+    inputSum.removeClass('error-value active')
+      .prop('readonly', true);
     return true;
     }
   inputSum.addClass('error-value');
