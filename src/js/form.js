@@ -30,12 +30,13 @@ $(document).on('change','.input__number--firstNum',function(){
     inputFirst.removeClass('error-value');
     sumNumberFirst.removeClass('error-background');
     inputFirst.removeClass('input__number--border');
+    inputFirst.prop('readonly', true);
     drawStroke(numberSecond, strokeSecond);
     inputSecond.css('display', 'block');
     return true;
     }
   inputFirst.addClass('error-value');
-  inputFirst.addClass('input__number--border');
+  // inputFirst.addClass('input__number--border');
   sumNumberFirst.addClass('error-background');
   return false;
 });
@@ -46,12 +47,13 @@ $(document).on('change','.input__number--secondNum',function(){
     inputSecond.removeClass('error-value');
     sumNumberSecond.removeClass('error-background');
     inputSecond.removeClass('input__number--border');
+    inputSecond.prop('readonly', true);
     question.css('display', 'none');
     inputSum.css('display', 'block');
     return true;
     }
   inputSecond.addClass('error-value');
-  inputSecond.addClass('input__number--border');
+  // inputSecond.addClass('input__number--border');
   sumNumberSecond.addClass('error-background');
   return false;
 });
@@ -61,10 +63,10 @@ $(document).on('change','.input__number--sum',function(){
   if(isTrue) {
     inputSum.removeClass('error-value');
     inputSum.removeClass('input__number--border');
+    inputSum.prop('readonly', true);
     return true;
     }
   inputSum.addClass('error-value');
-  inputSum.addClass('input__number--border');
   return false;
 });
 
