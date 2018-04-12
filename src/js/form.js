@@ -3,6 +3,7 @@
 
 let sumNumberFirst = $('.sum__number--first');
 let sumNumberSecond = $('.sum__number--second');
+let question = $('.sum__number--question');
 
 let strokeFirst = $('.calc__stroke-img--first');
 let strokeSecond = $('.calc__stroke-img--second');
@@ -10,26 +11,63 @@ let strokeSecond = $('.calc__stroke-img--second');
 let inputFirst = $('.input__number--firstNum');
 let inputSecond = $('.input__number--secondNum');
 let inputSum = $('.input__number--sum');
-let input = $('.input__number');
-
 
 let numberFirst = randomInteger(6, 9);
 let numberSecond = chooseSecondNumber();
+let totalSum = numberFirst + numberSecond;
 
 //присваивание значений в формуле
 sumNumberFirst.text(numberFirst);
 sumNumberSecond.text(numberSecond);
 
 drawStroke(numberFirst, strokeFirst);
-// inputFirst.css('display', 'block')
+inputFirst.css('display', 'block');
 
-drawStroke(numberSecond, strokeSecond);
+//проверка длину содержимого в input и его правильность
+$(document).on('change','.input__number--firstNum',function(){
+  let isTrue = validateTrue(inputFirst, numberFirst);
+  if(isTrue) {
+    inputFirst.removeClass('error-value');
+    sumNumberFirst.removeClass('error-background');
+    inputFirst.removeClass('input__number--border');
+    drawStroke(numberSecond, strokeSecond);
+    inputSecond.css('display', 'block');
+    return true;
+    }
+  inputFirst.addClass('error-value');
+  inputFirst.addClass('input__number--border');
+  sumNumberFirst.addClass('error-background');
+  return false;
+});
 
+$(document).on('change','.input__number--secondNum',function(){
+  let isTrue = validateTrue(inputSecond, numberSecond);
+  if(isTrue) {
+    inputSecond.removeClass('error-value');
+    sumNumberSecond.removeClass('error-background');
+    inputSecond.removeClass('input__number--border');
+    question.css('display', 'none');
+    inputSum.css('display', 'block');
+    return true;
+    }
+  inputSecond.addClass('error-value');
+  inputSecond.addClass('input__number--border');
+  sumNumberSecond.addClass('error-background');
+  return false;
+});
 
-let totalSum = numberFirst + numberSecond;
-console.log('numberFirst = ', numberFirst);
-console.log('numberSecond = ', numberSecond);
-console.log('totalSum = ', totalSum);
+$(document).on('change','.input__number--sum',function(){
+  let isTrue = validateTrue(inputSum, totalSum);
+  if(isTrue) {
+    inputSum.removeClass('error-value');
+    inputSum.removeClass('input__number--border');
+    return true;
+    }
+  inputSum.addClass('error-value');
+  inputSum.addClass('input__number--border');
+  return false;
+});
+
 
 //отрисовка стрелок
 function drawStroke(number, elem) {
@@ -78,66 +116,19 @@ function validateTrue(elemInput, elemFromEquation) {
 }
 
 // проверка на ввод чисел (ошибка, если вводим не число)
-input.on('keypress', function(e) {
-  let valNum = e.originalEvent.key;
-  if ( parseInt(valNum) !== parseInt(valNum)) {
-    input.addClass('error-value');
-    return false;
-    } else {
-    input.removeClass('error');
-    return true;
-  }
-});
-
-
-//проверка длину содержимого в input и его правильность
-$(document).ready(function(){
-
-  $(document).on('change','.input__number--firstNum',function(){
-    let isTrue = validateTrue(inputFirst, numberFirst);
-    if(isTrue) {
-      inputFirst.removeClass('error-value');
-      sumNumberFirst.removeClass('error-background');
+function isNumber(inputName) {
+  inputName.on('keypress', function(e) {
+    let valNum = e.originalEvent.key;
+    if ( parseInt(valNum) !== parseInt(valNum)) {
+      inputName.addClass('error-value');
+      return false;
+      } else {
+      inputName.removeClass('error-value');
       return true;
-      }
-    inputFirst.addClass('error-value');
-    sumNumberFirst.addClass('error-background');
-    return false;
+    }
   });
-
-  $(document).on('change','.input__number--secondNum',function(){
-    let isTrue = validateTrue(inputSecond, numberSecond);
-    if(isTrue) {
-      inputSecond.removeClass('error-value');
-      sumNumberSecond.removeClass('error-background');
-      return true;
-      }
-    inputSecond.addClass('error-value');
-    sumNumberSecond.addClass('error-background');
-    return false;
-  });
-
-  $(document).on('change','.input__number--sum',function(){
-    let isTrue = validateTrue(inputSum, totalSum);
-    if(isTrue) {
-      inputSum.removeClass('error-value');
-      return true;
-      }
-    inputSum.addClass('error-value');
-    return false;
-  });
-});
-
-
-//отправка формы, если все корректно введено
-// $('#submit').on('click', function(e) {
-//   var isValidForm = validateForm();
-//   if (isValidForm) {
-//     $('#form').on('submit', function (e) {
-//       console.log('ok');
-//     });
-//   } else{
-//     e.preventDefault();
-//     console.log('no ok');
-//   }
-// });
+}
+//выполнение проверки для всех input
+isNumber(inputFirst);
+isNumber(inputSecond);
+isNumber(inputSum);
