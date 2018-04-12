@@ -10,24 +10,25 @@ let strokeSecond = $('.calc__stroke-img--second');
 let inputFirst = $('.input__number--firstNum');
 let inputSecond = $('.input__number--secondNum');
 let inputSum = $('.input__number--sum');
+let input = $('.input__number');
 
 
-let firstNumber = randomInteger(6, 9);
-let secondNumber = chooseSecondNumber();
+let numberFirst = randomInteger(6, 9);
+let numberSecond = chooseSecondNumber();
 
 //присваивание значений в формуле
-sumNumberFirst.text(firstNumber);
-sumNumberSecond.text(secondNumber);
+sumNumberFirst.text(numberFirst);
+sumNumberSecond.text(numberSecond);
 
-drawStroke(firstNumber, strokeFirst);
-inputFirst.css('display', 'block')
+drawStroke(numberFirst, strokeFirst);
+// inputFirst.css('display', 'block')
 
-drawStroke(secondNumber, strokeSecond);
+drawStroke(numberSecond, strokeSecond);
 
 
-let totalSum = firstNumber + secondNumber;
-console.log('firstNumber = ', firstNumber);
-console.log('secondNumber = ', secondNumber);
+let totalSum = numberFirst + numberSecond;
+console.log('numberFirst = ', numberFirst);
+console.log('numberSecond = ', numberSecond);
 console.log('totalSum = ', totalSum);
 
 //отрисовка стрелок
@@ -46,17 +47,17 @@ function drawStroke(number, elem) {
 //выбор второго числв
 function chooseSecondNumber() {
 
-  if (firstNumber === 6) {
-    secondNumber = randomInteger(5, 8);
-  } else if (firstNumber === 7) {
-    secondNumber = randomInteger(4, 7);
-  } else if (firstNumber === 8) {
-    secondNumber = randomInteger(3, 6);
-  } else if (firstNumber === 9) {
-    secondNumber = randomInteger(2, 5);
+  if (numberFirst === 6) {
+    numberSecond = randomInteger(5, 8);
+  } else if (numberFirst === 7) {
+    numberSecond = randomInteger(4, 7);
+  } else if (numberFirst === 8) {
+    numberSecond = randomInteger(3, 6);
+  } else if (numberFirst === 9) {
+    numberSecond = randomInteger(2, 5);
   }
 
-  return secondNumber
+  return numberSecond
 }
 
 //функция рандомизатор
@@ -67,70 +68,68 @@ function randomInteger(min, max) {
   return rand;
 }
 
+// функция проверяет верность введенного числа
+function validateTrue(elemInput, elemFromEquation) {
+  if(+elemInput.val() === elemFromEquation) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// проверка на ввод чисел (ошибка, если вводим не число)
+input.on('keypress', function(e) {
+  let valNum = e.originalEvent.key;
+  if ( parseInt(valNum) !== parseInt(valNum)) {
+    input.addClass('error-value');
+    return false;
+    } else {
+    input.removeClass('error');
+    return true;
+  }
+});
 
 
+//проверка длину содержимого в input и его правильность
+$(document).ready(function(){
+
+  $(document).on('change','.input__number--firstNum',function(){
+    let isTrue = validateTrue(inputFirst, numberFirst);
+    if(isTrue) {
+      inputFirst.removeClass('error-value');
+      sumNumberFirst.removeClass('error-background');
+      return true;
+      }
+    inputFirst.addClass('error-value');
+    sumNumberFirst.addClass('error-background');
+    return false;
+  });
+
+  $(document).on('change','.input__number--secondNum',function(){
+    let isTrue = validateTrue(inputSecond, numberSecond);
+    if(isTrue) {
+      inputSecond.removeClass('error-value');
+      sumNumberSecond.removeClass('error-background');
+      return true;
+      }
+    inputSecond.addClass('error-value');
+    sumNumberSecond.addClass('error-background');
+    return false;
+  });
+
+  $(document).on('change','.input__number--sum',function(){
+    let isTrue = validateTrue(inputSum, totalSum);
+    if(isTrue) {
+      inputSum.removeClass('error-value');
+      return true;
+      }
+    inputSum.addClass('error-value');
+    return false;
+  });
+});
 
 
-
-// let iFirst = $('.input__number--firstNum');
-// let iSecond = $('.input__number--SecondNum');
-// let iSum = $('.input__number--sum');
-// let input = $('.input__number');
-//
-// // функция проверяет длину введенного текста
-// function validateLength(elem, length) {
-//   if(elem.val().length >= length) {
-//     return true;
-//   }
-//   return false;
-// }
-//
-// // проверка на ввод чисел (ошибка, если вводим не число)
-// input.on('keypress', function(e) {
-//   var valNum = e.originalEvent.key;
-//   if ( parseInt(valNum) !== parseInt(valNum)) {
-//     input.addClass('error-value');
-//     input.addClass('error-value');
-//     return false;
-//     } else {
-//     inputNumber.removeClass('error');
-//     return true;
-//   }
-// });
-
-
-
-
-// проверка длину содержимого в input
-// $(document).ready(function(){
-//
-//   $(document).on('change','.card__person',function(){
-//     var isLenght = validateLength(inputPerson, 4);
-//     if(isLenght) {
-//       inputPerson.removeClass('error');
-//       return true;
-//       }
-//     inputPerson.addClass('error');
-//     return false;
-//   });
-//
-//
-// });
-
-// функция валидации формы - проверяет, чтобы все поля были введены
-// function validateForm() {
-//   var person = inputPerson.val();
-//   var cvc = inputCVV.val();
-//   for (var i = 0; i < inputNumber.length; i++) {
-//     var num = inputNumber[i].value;
-//     if(num.length<4) return false;
-//   }
-//   if(person.length<4) return false;
-//   if(cvc.length<3) return false;
-//   return true;
-// }
-
-// отправка формы, если все корректно введено
+//отправка формы, если все корректно введено
 // $('#submit').on('click', function(e) {
 //   var isValidForm = validateForm();
 //   if (isValidForm) {

@@ -7,6 +7,7 @@
   width: 30px;
   font-size: 40px;
   color: $black;
+  text-align: center;
   &--total{
     width: 67px;
     height: 50px;
@@ -26,13 +27,13 @@
       outline: none!important;
     }
     &--sum{
-      display: none;
+      display: block;
     }
     &--firstNum{
-      display: none;
+      display: block;
     }
     &--SecondNum{
-      display: none;
+      display: block;
     }
 }
 
